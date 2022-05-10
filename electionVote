@@ -1,48 +1,43 @@
-pragma solidity ^0.8.2;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.7;
 
-contract Election {
-    // Model a Candidate
-    struct Candidate {
-        uint id;
-        string name;
-        uint voteCount;
+contract PollDapp {
+
+
+    string public question;
+    string[] options;
+
+    mapping (uint => uint) voteCount;
+    mapping (address => uint) castedVotes;
+    
+    constructor (string memory _question, string[] memory _options) {
+        question = _question;
+        options = _options;
     }
 
-    // Store accounts that have voted
-    mapping(address => bool) public voters;
-    // Store Candidates
-    // Fetch Candidate
-    mapping(uint => Candidate) public candidates;
-    // Store Candidates Count
-    uint public candidatesCount;
+    function getOptions() public view returns (string[] memory) {
+        return options; 
+ }
+ 
+function castVote (uint _optionIndex) public returns (string memory) {
 
-    // voted event
-    event votedEvent (
-        uint indexed _candidateId
-    );
+    address _caller = msg.sender;
+    
 
-    function Election () public {
-        xxx
+     uint existingNumberOfVotes = voteCount[_optionIndex];
+     uint updatedNumberOfVotes = existingNumberOfVotes + 1;
+
+     uint existingVotesByCaller = castedVotes[_caller];
+
+     require(existingVotesByCaller == 0, "No way, dude: You can only vote once");
+
+     uint updatedVotesByCaller = existingVotesByCaller +1;
+
+     voteCount[_optionIndex] = updatedNumberOfVotes;
+     castedVotes[_caller] = updatedNumberOfVotes;
+
+
+     return "Way to Go, Your Vote Matters!!!";
+ }
     }
 
-    function addCandidate (string _name) private {
-xx
-    }
-
-    function vote (uint _candidateId) public {
-        // require that they haven't voted before
-xxx
-
-        // require a valid candidate
-xxx
-
-        // record that voter has voted
-        xxx
-
-        // update candidate vote Count
-xxx
-
-        // trigger voted event
-        votedEvent(_candidateId);
-    }
-}
