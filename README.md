@@ -1,2 +1,2 @@
-# ElectionKiran.sol
-The following is a smart contract. The smart contract dictates the executing of an immutable voting system, in the spirit of learning and of teaching.
+# poll.sol
+Hello hello frens. Welcome to my first ever smart contract. This is an example of a very simple smart contract, written in Solidity.
