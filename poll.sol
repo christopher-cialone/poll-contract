@@ -37,7 +37,7 @@ function castVote (uint _optionIndex) public returns (string memory) {
      castedVotes[_caller] = updatedNumberOfVotes;
 
 
-     return "Way to Go, Your Vote Matters!!!";
+     return "cryptoCialone really is the best!!!";
  }
     }
 
